@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[coolwoody's Blog]]></title>
+  <link href="http://coolwoody.github.io/atom.xml" rel="self"/>
+  <link href="http://coolwoody.github.io/"/>
+  <updated>2013-12-19T21:34:45+08:00</updated>
+  <id>http://coolwoody.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[EF-ExecuteSqlCommand]]></title>
+    <link href="http://coolwoody.github.io/blog/2013/12/ef-entity-framework-executesqlcommand/"/>
+    <updated>2013-12-19T20:55:09+08:00</updated>
+    <id>http://coolwoody.github.io/blog/2013/12/ef-entity-framework-executesqlcommand</id>
+    <content type="html"><![CDATA[<h1>Entity Framework使用ExecuteSqlCommand调用有输出参数存储过程</h1>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="kt">var</span> <span class="n">p1</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlParameter</span><span class="p">(</span><span class="s">&quot;as_csocode&quot;</span><span class="p">,</span> <span class="n">cSocode</span><span class="p">);</span>
+</span><span class='line'>                    <span class="kt">var</span> <span class="n">p2</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlParameter</span><span class="p">(</span><span class="s">&quot;ad_billdate&quot;</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">Parse</span><span class="p">(</span><span class="n">billdate</span><span class="p">));</span>
+</span><span class='line'>                    <span class="kt">var</span> <span class="n">p3</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlParameter</span><span class="p">(</span><span class="s">&quot;as_cmaker&quot;</span><span class="p">,</span> <span class="n">cMaker</span><span class="p">);</span>
+</span><span class='line'>                    <span class="kt">var</span> <span class="n">p4</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlParameter</span><span class="p">(</span><span class="s">&quot;as_cperson&quot;</span><span class="p">,</span> <span class="n">PObuyerNo</span><span class="p">);</span>
+</span><span class='line'>                    <span class="kt">var</span> <span class="n">p5Out</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlParameter</span><span class="p">(</span><span class="s">&quot;as_cpoid&quot;</span><span class="p">,</span> <span class="n">System</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">SqlDbType</span><span class="p">.</span><span class="n">NVarChar</span><span class="p">,</span><span class="m">200</span><span class="p">);</span>
+</span><span class='line'>                    <span class="n">p5Out</span><span class="p">.</span><span class="n">Direction</span> <span class="p">=</span> <span class="n">System</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">ParameterDirection</span><span class="p">.</span><span class="n">Output</span><span class="p">;</span>
+</span><span class='line'>                    <span class="n">edmx</span><span class="p">.</span><span class="n">Database</span><span class="p">.</span><span class="n">ExecuteSqlCommand</span><span class="p">(</span><span class="s">&quot;exec dbo.Pr_po @as_csocode,@ad_billdate,@as_cmaker,@as_cperson,@as_cpoid output&quot;</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">p3</span><span class="p">,</span> <span class="n">p4</span><span class="p">,</span> <span class="n">p5Out</span><span class="p">);</span>
+</span><span class='line'>                    <span class="n">returnStr</span> <span class="p">=</span> <span class="n">p5Out</span><span class="p">.</span><span class="n">Value</span><span class="p">.</span><span class="n">ToString</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+</feed>
