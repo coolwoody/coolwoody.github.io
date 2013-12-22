@@ -9,10 +9,22 @@
   <meta name="author" content="Your Name">
 
   
+<<<<<<< HEAD
   <meta name="description" content="必备程序安装 octopress 中文内容无法生成提示错误“invalid byte sequence in gbk jekyll”
 解决方案：
 在git安装目录Git\etc\profile文件最后行里加入以下内容 export LC_ALL=en_US.UTF-8
 export LANG= &hellip;">
+=======
+  <meta name="description" content="Entity Framework使用ExecuteSqlCommand调用有输出参数存储过程 1
+2
+3
+4
+5
+6
+7
+8
+var p1 = new SqlParameter(&quot;as_csocode&quot;, cSocode); var p2 = new SqlParameter &hellip;">
+>>>>>>> origin/master
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -74,6 +86,7 @@ export LANG= &hellip;">
       
   <header>
     
+<<<<<<< HEAD
       <h1 class="entry-title"><a href="/blog/2013/12/octopress-in-windows7-x64/">Octopress在windows7 X64的安装</a></h1>
     
     
@@ -118,6 +131,9 @@ export LANG=en_US.UTF-8</p>
   <header>
     
       <h1 class="entry-title"><a href="/blog/2013/12/ef-entity-framework-executesqlcommand/">EF使用ExecuteSqlCommand执行存储过程</a></h1>
+=======
+      <h1 class="entry-title"><a href="/blog/2013/12/ef-entity-framework-executesqlcommand/">EF-ExecuteSqlCommand</a></h1>
+>>>>>>> origin/master
     
     
       <p class="meta">
@@ -140,7 +156,11 @@ export LANG=en_US.UTF-8</p>
   </header>
 
 
+<<<<<<< HEAD
   <div class="entry-content"><h2>Entity Framework使用ExecuteSqlCommand调用有输出参数存储过程</h2>
+=======
+  <div class="entry-content"><h1>Entity Framework使用ExecuteSqlCommand调用有输出参数存储过程</h1>
+>>>>>>> origin/master
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -151,6 +171,7 @@ export LANG=en_US.UTF-8</p>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 </pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="kt">var</span> <span class="n">p1</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlParameter</span><span class="p">(</span><span class="s">&quot;as_csocode&quot;</span><span class="p">,</span> <span class="n">cSocode</span><span class="p">);</span>
+<<<<<<< HEAD
 </span><span class='line'><span class="kt">var</span> <span class="n">p2</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlParameter</span><span class="p">(</span><span class="s">&quot;ad_billdate&quot;</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">Parse</span><span class="p">(</span><span class="n">billdate</span><span class="p">));</span>
 </span><span class='line'><span class="kt">var</span> <span class="n">p3</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlParameter</span><span class="p">(</span><span class="s">&quot;as_cmaker&quot;</span><span class="p">,</span> <span class="n">cMaker</span><span class="p">);</span>
 </span><span class='line'><span class="kt">var</span> <span class="n">p4</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlParameter</span><span class="p">(</span><span class="s">&quot;as_cperson&quot;</span><span class="p">,</span> <span class="n">PObuyerNo</span><span class="p">);</span>
@@ -158,6 +179,15 @@ export LANG=en_US.UTF-8</p>
 </span><span class='line'><span class="n">p5Out</span><span class="p">.</span><span class="n">Direction</span> <span class="p">=</span> <span class="n">System</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">ParameterDirection</span><span class="p">.</span><span class="n">Output</span><span class="p">;</span>
 </span><span class='line'><span class="n">edmx</span><span class="p">.</span><span class="n">Database</span><span class="p">.</span><span class="n">ExecuteSqlCommand</span><span class="p">(</span><span class="s">&quot;exec dbo.Pr_po @as_csocode,@ad_billdate,@as_cmaker,@as_cperson,@as_cpoid output&quot;</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">p3</span><span class="p">,</span> <span class="n">p4</span><span class="p">,</span> <span class="n">p5Out</span><span class="p">);</span>
 </span><span class='line'><span class="n">returnStr</span> <span class="p">=</span> <span class="n">p5Out</span><span class="p">.</span><span class="n">Value</span><span class="p">.</span><span class="n">ToString</span><span class="p">();</span>
+=======
+</span><span class='line'>                    <span class="kt">var</span> <span class="n">p2</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlParameter</span><span class="p">(</span><span class="s">&quot;ad_billdate&quot;</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">Parse</span><span class="p">(</span><span class="n">billdate</span><span class="p">));</span>
+</span><span class='line'>                    <span class="kt">var</span> <span class="n">p3</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlParameter</span><span class="p">(</span><span class="s">&quot;as_cmaker&quot;</span><span class="p">,</span> <span class="n">cMaker</span><span class="p">);</span>
+</span><span class='line'>                    <span class="kt">var</span> <span class="n">p4</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlParameter</span><span class="p">(</span><span class="s">&quot;as_cperson&quot;</span><span class="p">,</span> <span class="n">PObuyerNo</span><span class="p">);</span>
+</span><span class='line'>                    <span class="kt">var</span> <span class="n">p5Out</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SqlParameter</span><span class="p">(</span><span class="s">&quot;as_cpoid&quot;</span><span class="p">,</span> <span class="n">System</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">SqlDbType</span><span class="p">.</span><span class="n">NVarChar</span><span class="p">,</span><span class="m">200</span><span class="p">);</span>
+</span><span class='line'>                    <span class="n">p5Out</span><span class="p">.</span><span class="n">Direction</span> <span class="p">=</span> <span class="n">System</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">ParameterDirection</span><span class="p">.</span><span class="n">Output</span><span class="p">;</span>
+</span><span class='line'>                    <span class="n">edmx</span><span class="p">.</span><span class="n">Database</span><span class="p">.</span><span class="n">ExecuteSqlCommand</span><span class="p">(</span><span class="s">&quot;exec dbo.Pr_po @as_csocode,@ad_billdate,@as_cmaker,@as_cperson,@as_cpoid output&quot;</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">p3</span><span class="p">,</span> <span class="n">p4</span><span class="p">,</span> <span class="n">p5Out</span><span class="p">);</span>
+</span><span class='line'>                    <span class="n">returnStr</span> <span class="p">=</span> <span class="n">p5Out</span><span class="p">.</span><span class="n">Value</span><span class="p">.</span><span class="n">ToString</span><span class="p">();</span>
+>>>>>>> origin/master
 </span></code></pre></td></tr></table></div></figure>
 
 </div>
@@ -180,11 +210,15 @@ export LANG=en_US.UTF-8</p>
   <ul id="recent_posts">
     
       <li class="post">
+<<<<<<< HEAD
         <a href="/blog/2013/12/octopress-in-windows7-x64/">Octopress在windows7 X64的安装</a>
       </li>
     
       <li class="post">
         <a href="/blog/2013/12/ef-entity-framework-executesqlcommand/">EF使用ExecuteSqlCommand执行存储过程</a>
+=======
+        <a href="/blog/2013/12/ef-entity-framework-executesqlcommand/">EF-ExecuteSqlCommand</a>
+>>>>>>> origin/master
       </li>
     
   </ul>
