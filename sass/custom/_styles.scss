@@ -1,2 +1,17 @@
 // This File is imported last, and will override other styles in the cascade
 // Add styles here to make changes without digging in too much
+h1{font-size:1.8em}
+body>header {
+	font-size: 1.0em;
+	padding-top: 1em;
+	padding-bottom: 0.5em;	
+}
+article {
+	padding-top: .1em;
+}
+article header {
+	margin-bottom: 0.5em;
+}
+aside.sidebar section h1 {
+	margin: 1em 0 0;
+}

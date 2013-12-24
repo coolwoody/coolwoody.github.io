@@ -3,9 +3,9 @@ layout: post
 title: "EF使用ExecuteSqlCommand执行存储过程"
 date: 2013-12-19 20:55:09 +0800
 comments: true
-categories: 
+categories: [EF,ado.net]
 ---
-##Entity Framework使用ExecuteSqlCommand调用有输出参数存储过程
+###Entity Framework使用ExecuteSqlCommand调用有输出参数存储过程
 ```csharp
 var p1 = new SqlParameter("as_csocode", cSocode);
 var p2 = new SqlParameter("ad_billdate", DateTime.Parse(billdate));
