@@ -5,14 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Octopress在windows7 X64的安装 - coolwoody's Blog</title>
-  <meta name="author" content="Your Name">
+  <title>Octopress在windows7 X64的安装流水帐 - coolwoody's Blog</title>
+  <meta name="author" content="zmw">
 
   
-  <meta name="description" content="必备程序安装 octopress 中文内容无法生成提示错误“invalid byte sequence in gbk jekyll”
-解决方案：
-在git安装目录Git\etc\profile文件最后行里加入以下内容 export LC_ALL=en_US.UTF-8
-export LANG= &hellip;">
+  <meta name="description" content="必备程序安装 Ruby1.9.3-p429(octopress 是基本ruby开发的)
+Python2.7.5(代码高亮插件是基于Python) DevKit-tdm(是一个zip压缩包，网上说要安装，但是试了下安装后，删除还是能正常编译博客，所以。。。暂且可以不装吧？) Git1.8.安装 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -71,7 +69,7 @@ export LANG= &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Octopress在windows7 X64的安装</h1>
+      <h1 class="entry-title">Octopress在windows7 X64的安装流水帐</h1>
     
     
       <p class="meta">
@@ -87,21 +85,159 @@ export LANG= &hellip;">
   
 
 
-<time datetime="2013-12-20T19:53:42+08:00" pubdate data-updated="true">Dec 20<span>th</span>, 2013</time>
+<time datetime="2013-12-20T19:53:42+08:00" pubdate data-updated="true">2013-12-20 19:53:42</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><h2>必备程序安装</h2>
+<div class="entry-content"><h3>必备程序安装</h3>
 
-<p>octopress 中文内容无法生成提示错误“invalid byte sequence in gbk jekyll”
-解决方案：
-在git安装目录Git\etc\profile文件最后行里加入以下内容</p>
+<ol>
+<li><code>Ruby1.9.3-p429</code>(octopress 是基本ruby开发的)</li>
+<li><code>Python2.7.5</code>(代码高亮插件是基于Python)
 
-<p>export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8</p>
+<ol>
+<li><code>DevKit-tdm</code>(是一个zip压缩包，网上说要安装，但是试了下安装后，删除还是能正常编译博客，所以。。。暂且可以不装吧？)</li>
+</ol>
+</li>
+<li><code>Git1.8.安装</code>
+安装好后将C:\Python27\Scripts;C:\Python27;C:\Ruby193\bin; 加到PATH环境变量</li>
+</ol>
+
+
+<h3>到GitHub上注册并配置</h3>
+
+<p>注册一个帐号，比如myBlog<br/>
+新建一个项目名称为“myBlog.Github.io”,以后myBlog.Github.io就是我们博客的域名了</p>
+
+<p>到本地Git bash 命令窗口执行ssh-keygen生成公、私钥，默认生成在当前用户目录下的.ssh文件中。
+拷贝id_rsa.pub中的公钥到github的项目ssh中，这样本地才能有权限推送内容</p>
+
+<h3>octopress安装配置</h3>
+
+<p>到 <code>git://github.com/imathis/octopress.git</code> 上把octopress Clone 到本地目录<br/>
+使用git bash here 命令行，进入octopress目录<br/>
+使用国内的淘宝镜像安装Octopress的依赖项<br/>
+<code>gem sources -a http://ruby.taobao.org/</code><br/>
+<code>gem sources -r http://rubygems.org/</code></p>
+
+<p>修改Octopress目录下的Gemfile文件，将第一行的<a href="http://rubygems.org/">http://rubygems.org/</a> 修改为<a href="http://ruby.taobao.org/">http://ruby.taobao.org/</a></p>
+
+<p><code>gem install bundler</code>   //包安装工具的安装<br/>
+<code>bundle install</code> //安装Gemfile文件中列出的名</p>
+
+<p>使用默认主题安装Octopress<br/>
+<code>rake install</code></p>
+
+<blockquote><p>如果是用其它主题可用把主题放到.themes中，然后使用rake install[&lsquo;主题名&rsquo;]安装
+到此所有的安装工作已经结束，输入下面的命令可以在本地进行预览。</p></blockquote>
+
+<p><code>rake preview</code>  //开启预览：localhost:4000</p>
+
+<h3>开始写文章</h3>
+
+<p><code>rake new_post['博客URL']</code><br/>
+如果输入中文会被自动转正拼音，运行命令后会在<code>/source/_posts</code>目录中生成一个markdown文件<br/>
+写点内容后开始生成文章<br/>
+<code>rake generate</code><br/>
+generate 后会在<code>/source/public</code>目录下生成整站的html，在rake deploy后会把pulic目录的内容并到
+_deploy目录并push到对应github上的master分支，source对应github上的source分支</p>
+
+<h3>发布到github</h3>
+
+<p><code>rake setup_github_pages</code><br/>
+要提示输入你在github建的项目ssh地址，如git@github.com:myBlog/myBlog.Github.io
+<code>rake deploy</code><br/>
+发布到github ，rake deploy原理就是把_deploy目录的内容push到master分支</p>
+
+<h3>其它一些问题</h3>
+
+<p>octopress 中文内容无法生成提示错误“invalid byte sequence in gbk jekyll”<br/>
+解决方案：<br/>
+在git安装目录Git\etc\profile文件最后行里加入以下两行内容，为命令行窗口添加中文支持<br/>
+<code>export LC_ALL=en_US.UTF-8</code><br/>
+<code>export LANG=en_US.UTF-8</code></p>
+
+<hr />
+
+<h4>把源码备份到github 上</h4>
+
+<p><code>git push origin source</code><br/>
+安装Octopress的视频：<br/>
+<a href="http://happycasts.net/episodes/36?autoplay=true">http://happycasts.net/episodes/36?autoplay=true</a></p>
+
+<hr />
+
+<h4>显示category到侧边栏</h4>
+
+<p>把文件category_list_tag.rb扔到\plugins目录</p>
+
+<figure class='code'><figcaption><span>category_list_tag.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Jekyll</span>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">CategoryListTag</span> <span class="o">&lt;</span> <span class="ss">Liquid</span><span class="p">:</span><span class="ss">:Tag</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">html</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</span><span class='line'>      <span class="n">categories</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">registers</span><span class="o">[</span><span class="ss">:site</span><span class="o">].</span><span class="n">categories</span><span class="o">.</span><span class="n">keys</span>
+</span><span class='line'>      <span class="n">categories</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">category</span><span class="o">|</span>
+</span><span class='line'>        <span class="n">posts_in_category</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">registers</span><span class="o">[</span><span class="ss">:site</span><span class="o">].</span><span class="n">categories</span><span class="o">[</span><span class="n">category</span><span class="o">].</span><span class="n">size</span>
+</span><span class='line'>        <span class="n">category_dir</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">registers</span><span class="o">[</span><span class="ss">:site</span><span class="o">].</span><span class="n">config</span><span class="o">[</span><span class="s1">&#39;category_dir&#39;</span><span class="o">]</span>
+</span><span class='line'>        <span class="n">category_url</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">category_dir</span><span class="p">,</span> <span class="n">category</span><span class="o">.</span><span class="n">to_url</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">html</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;&lt;li class=&#39;category&#39;&gt;&lt;a href=&#39;/</span><span class="si">#{</span><span class="n">category_url</span><span class="si">}</span><span class="s2">/&#39;&gt;</span><span class="si">#{</span><span class="n">category</span><span class="si">}</span><span class="s2"> (</span><span class="si">#{</span><span class="n">posts_in_category</span><span class="si">}</span><span class="s2">)&lt;/a&gt;&lt;/li&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>      <span class="n">html</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="ss">Liquid</span><span class="p">:</span><span class="ss">:Template</span><span class="o">.</span><span class="n">register_tag</span><span class="p">(</span><span class="s1">&#39;category_list&#39;</span><span class="p">,</span> <span class="ss">Jekyll</span><span class="p">:</span><span class="ss">:CategoryListTag</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> 把category_list.html扔到\source_includes\custom\asides目录</p>
+
+<figure class='code'><figcaption><span>category_list.html </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Categories<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;categories&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    \{\% category_list \%\}
+</span><span class='line'>  <span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>以上&#8217;\&lsquo;在使用时要去除，这里加了&rsquo;\&lsquo;只是为了不让生成时替换category_list标签<br/>
+_config.yml中的default_asides: 中加入 custom/asides/category_list.html<br/>
+就OK了</p>
+
+<hr />
+
+<h4>样式定制到</h4>
+
+<p><code>sass\custom\_styles.scss</code><br/>
+添加相应样式后，会覆盖默认的样式</p>
 </div>
 
 
@@ -110,7 +246,7 @@ export LANG=en_US.UTF-8</p>
       
   
 
-<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+<span class="byline author vcard">Posted by <span class="fn">zmw</span></span>
 
       
 
@@ -124,7 +260,7 @@ export LANG=en_US.UTF-8</p>
   
 
 
-<time datetime="2013-12-20T19:53:42+08:00" pubdate data-updated="true">Dec 20<span>th</span>, 2013</time>
+<time datetime="2013-12-20T19:53:42+08:00" pubdate data-updated="true">2013-12-20 19:53:42</time>
       
 
 <span class="categories">
@@ -137,8 +273,6 @@ export LANG=en_US.UTF-8</p>
     </p>
     
       <div class="sharing">
-  
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://coolwoody.github.io/blog/2013/12/octopress-in-windows7-x64/" data-via="" data-counturl="http://coolwoody.github.io/blog/2013/12/octopress-in-windows7-x64/" >Tweet</a>
   
   
   
@@ -163,7 +297,7 @@ export LANG=en_US.UTF-8</p>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/12/octopress-in-windows7-x64/">Octopress在windows7 X64的安装</a>
+        <a href="/blog/2013/12/octopress-in-windows7-x64/">Octopress在windows7 X64的安装流水帐</a>
       </li>
     
       <li class="post">
@@ -176,7 +310,15 @@ export LANG=en_US.UTF-8</p>
 
 
 
+<section>
+  <h1>Categories</h1>
+  <ul id="categories">
+    <li class='category'><a href='/blog/categories/ef/'>EF (1)</a></li>
+<li class='category'><a href='/blog/categories/ado-dot-net/'>ado.net (1)</a></li>
+<li class='category'><a href='/blog/categories/octopress/'>octopress (1)</a></li>
 
+  </ul>
+</section>
   
 </aside>
 
@@ -184,7 +326,7 @@ export LANG=en_US.UTF-8</p>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Your Name -
+  Copyright &copy; 2013 - zmw -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
@@ -196,16 +338,6 @@ export LANG=en_US.UTF-8</p>
 
 
 
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = '//platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
 
 
 

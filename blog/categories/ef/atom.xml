@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: EF | coolwoody's Blog]]></title>
+  <link href="http://coolwoody.github.io/blog/categories/ef/atom.xml" rel="self"/>
+  <link href="http://coolwoody.github.io/"/>
+  <updated>2013-12-27T19:57:54+08:00</updated>
+  <id>http://coolwoody.github.io/</id>
+  <author>
+    <name><![CDATA[zmw]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[EF使用ExecuteSqlCommand执行存储过程]]></title>
+    <link href="http://coolwoody.github.io/blog/2013/12/ef-entity-framework-executesqlcommand/"/>
+    <updated>2013-12-19T20:55:09+08:00</updated>
+    <id>http://coolwoody.github.io/blog/2013/12/ef-entity-framework-executesqlcommand</id>
+    <content type="html"><![CDATA[<h3>Entity Framework使用ExecuteSqlCommand调用有输出参数存储过程</h3>
+
+<p><code>csharp
+var p1 = new SqlParameter("as_csocode", cSocode);
+var p2 = new SqlParameter("ad_billdate", DateTime.Parse(billdate));
+var p3 = new SqlParameter("as_cmaker", cMaker);
+var p4 = new SqlParameter("as_cperson", PObuyerNo);
+var p5Out = new SqlParameter("as_cpoid", System.Data.SqlDbType.NVarChar,200);
+p5Out.Direction = System.Data.ParameterDirection.Output;
+edmx.Database.ExecuteSqlCommand("exec dbo.Pr_po @as_csocode,@ad_billdate,@as_cmaker,@as_cperson,@as_cpoid output", p1, p2, p3, p4, p5Out);
+returnStr = p5Out.Value.ToString();
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>

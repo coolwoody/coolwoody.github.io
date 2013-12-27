@@ -4,28 +4,146 @@
   <title><![CDATA[Category: Octopress | coolwoody's Blog]]></title>
   <link href="http://coolwoody.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://coolwoody.github.io/"/>
-  <updated>2013-12-22T21:02:27+08:00</updated>
+  <updated>2013-12-27T19:57:54+08:00</updated>
   <id>http://coolwoody.github.io/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
+    <name><![CDATA[zmw]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
   
   <entry>
-    <title type="html"><![CDATA[Octopress在windows7 X64的安装]]></title>
+    <title type="html"><![CDATA[Octopress在windows7 X64的安装流水帐]]></title>
     <link href="http://coolwoody.github.io/blog/2013/12/octopress-in-windows7-x64/"/>
     <updated>2013-12-20T19:53:42+08:00</updated>
     <id>http://coolwoody.github.io/blog/2013/12/octopress-in-windows7-x64</id>
-    <content type="html"><![CDATA[<h2>必备程序安装</h2>
+    <content type="html"><![CDATA[<h3>必备程序安装</h3>
 
-<p>octopress 中文内容无法生成提示错误“invalid byte sequence in gbk jekyll”
-解决方案：
-在git安装目录Git\etc\profile文件最后行里加入以下内容</p>
+<ol>
+<li><code>Ruby1.9.3-p429</code>(octopress 是基本ruby开发的)</li>
+<li><code>Python2.7.5</code>(代码高亮插件是基于Python)
 
-<p>export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8</p>
+<ol>
+<li><code>DevKit-tdm</code>(是一个zip压缩包，网上说要安装，但是试了下安装后，删除还是能正常编译博客，所以。。。暂且可以不装吧？)</li>
+</ol>
+</li>
+<li><code>Git1.8.安装</code>
+安装好后将C:\Python27\Scripts;C:\Python27;C:\Ruby193\bin; 加到PATH环境变量</li>
+</ol>
+
+
+<h3>到GitHub上注册并配置</h3>
+
+<p>注册一个帐号，比如myBlog<br/>
+新建一个项目名称为“myBlog.Github.io”,以后myBlog.Github.io就是我们博客的域名了</p>
+
+<p>到本地Git bash 命令窗口执行ssh-keygen生成公、私钥，默认生成在当前用户目录下的.ssh文件中。
+拷贝id_rsa.pub中的公钥到github的项目ssh中，这样本地才能有权限推送内容</p>
+
+<h3>octopress安装配置</h3>
+
+<p>到 <code>git://github.com/imathis/octopress.git</code> 上把octopress Clone 到本地目录<br/>
+使用git bash here 命令行，进入octopress目录<br/>
+使用国内的淘宝镜像安装Octopress的依赖项<br/>
+<code>gem sources -a http://ruby.taobao.org/</code><br/>
+<code>gem sources -r http://rubygems.org/</code></p>
+
+<p>修改Octopress目录下的Gemfile文件，将第一行的<a href="http://rubygems.org/">http://rubygems.org/</a> 修改为<a href="http://ruby.taobao.org/">http://ruby.taobao.org/</a></p>
+
+<p><code>gem install bundler</code>   //包安装工具的安装<br/>
+<code>bundle install</code> //安装Gemfile文件中列出的名</p>
+
+<p>使用默认主题安装Octopress<br/>
+<code>rake install</code></p>
+
+<blockquote><p>如果是用其它主题可用把主题放到.themes中，然后使用rake install[&lsquo;主题名&rsquo;]安装
+到此所有的安装工作已经结束，输入下面的命令可以在本地进行预览。</p></blockquote>
+
+<p><code>rake preview</code>  //开启预览：localhost:4000</p>
+
+<h3>开始写文章</h3>
+
+<p><code>rake new_post['博客URL']</code><br/>
+如果输入中文会被自动转正拼音，运行命令后会在<code>/source/_posts</code>目录中生成一个markdown文件<br/>
+写点内容后开始生成文章<br/>
+<code>rake generate</code><br/>
+generate 后会在<code>/source/public</code>目录下生成整站的html，在rake deploy后会把pulic目录的内容并到
+_deploy目录并push到对应github上的master分支，source对应github上的source分支</p>
+
+<h3>发布到github</h3>
+
+<p><code>rake setup_github_pages</code><br/>
+要提示输入你在github建的项目ssh地址，如git@github.com:myBlog/myBlog.Github.io
+<code>rake deploy</code><br/>
+发布到github ，rake deploy原理就是把_deploy目录的内容push到master分支</p>
+
+<h3>其它一些问题</h3>
+
+<p>octopress 中文内容无法生成提示错误“invalid byte sequence in gbk jekyll”<br/>
+解决方案：<br/>
+在git安装目录Git\etc\profile文件最后行里加入以下两行内容，为命令行窗口添加中文支持<br/>
+<code>export LC_ALL=en_US.UTF-8</code><br/>
+<code>export LANG=en_US.UTF-8</code></p>
+
+<hr />
+
+<h4>把源码备份到github 上</h4>
+
+<p><code>git push origin source</code><br/>
+安装Octopress的视频：<br/>
+<a href="http://happycasts.net/episodes/36?autoplay=true">http://happycasts.net/episodes/36?autoplay=true</a></p>
+
+<hr />
+
+<h4>显示category到侧边栏</h4>
+
+<p>把文件category_list_tag.rb扔到\plugins目录<br/>
+```ruby category_list_tag.rb
+module Jekyll
+  class CategoryListTag &lt; Liquid::Tag</p>
+
+<pre><code>def render(context)
+  html = ""
+  categories = context.registers[:site].categories.keys
+  categories.sort.each do |category|
+    posts_in_category = context.registers[:site].categories[category].size
+    category_dir = context.registers[:site].config['category_dir']
+    category_url = File.join(category_dir, category.to_url)
+    html &lt;&lt; "&lt;li class='category'&gt;&lt;a href='http://coolwoody.github.io/#{category_url}/'&gt;#{category} (#{posts_in_category})&lt;/a&gt;&lt;/li&gt;\n"
+  end
+  html
+end
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>Liquid::Template.register_tag(&lsquo;category_list&rsquo;, Jekyll::CategoryListTag)
+```</p>
+
+<p> 把category_list.html扔到\source_includes\custom\asides目录
+```html category_list.html
+<section>
+  <h1>Categories</h1>
+  <ul id="categories"></p>
+
+<pre><code>\{\% category_list \%\}  
+</code></pre>
+
+<p>  </ul>
+</section>
+```
+以上'\&lsquo;在使用时要去除，这里加了&rsquo;\&lsquo;只是为了不让生成时替换category_list标签<br/>
+_config.yml中的default_asides: 中加入 custom/asides/category_list.html<br/>
+就OK了</p>
+
+<hr />
+
+<h4>样式定制到</h4>
+
+<p><code>sass\custom\_styles.scss</code><br/>
+添加相应样式后，会覆盖默认的样式</p>
 ]]></content>
   </entry>
   
